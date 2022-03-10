@@ -1,0 +1,17 @@
+{
+    "name": "@dex/monorepo",
+    "version": "1.0.0",
+    "private": true,
+    "keywords": [
+        "ethereum",
+        "react",
+        "uniswap",
+        "workspaces",
+        "yarn"
+      ],
+    "workspaces": {
+        "packages": [
+          "packages/*"
+        ]
+    }
+}

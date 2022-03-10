@@ -1,14 +1,18 @@
 {
-    "name": "@dex/monorepo",
-    "version": "1.0.0",
-    "private": true,
+    "name":"@dex/monorepo",
+    "private":true,
     "keywords": [
         "ethereum",
         "react",
         "uniswap",
         "workspaces",
-        "yarn"
+        "yarn",
+        "sanity"
       ],
+    "scripts": {
+        "sanity": "yarn workspace uniswap-blockchain-app start",
+        "build": "sanity build"
+    },
     "workspaces": {
         "packages": [
           "packages/*"

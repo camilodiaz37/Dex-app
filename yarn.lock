@@ -941,7 +941,7 @@
     "@babel/helper-validator-option" "^7.16.7"
     "@babel/plugin-transform-typescript" "^7.16.7"
 
-"@babel/register@^7.7.4":
+"@babel/register@^7.17.0", "@babel/register@^7.7.4":
   version "7.17.0"
   resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.17.0.tgz#8051e0b7cb71385be4909324f072599723a1f084"
   integrity sha512-UNZsMAZ7uKoGHo1HlEXfteEOYssf64n/PNLHGqOKq/bgYcu/4LrQWAHJwSCb3BRZK8Hi5gkJdRcwrGTO2wtRCg==

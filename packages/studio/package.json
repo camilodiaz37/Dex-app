@@ -1,5 +1,5 @@
 {
-  "name": "@dex/studio",
+  "name": "uniswap-blockchain-app",
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -30,5 +30,8 @@
     "react-dom": "^17.0",
     "styled-components": "^5.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.0"
+  }
 }

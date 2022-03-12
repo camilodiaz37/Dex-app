@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Flex, Tag } from '@chakra-ui/react'
 import theme from 'theme'
 import styled from '@emotion/styled'
@@ -14,16 +14,23 @@ const ConnectButton = styled(Button)`
 
 const ConnectWalletButton = () => {
   const { walletConnect, currentAccount } = useContext(TransactionContext)
-  console.log({ walletConnect, currentAccount })
+  const [address, setAddress] = useState('')
+  useEffect(() => {
+    if (currentAccount) {
+      setAddress(currentAccount)
+    }
+  }, [currentAccount])
+
+  console.log({ address })
   return (
     <Flex>
-      {!currentAccount ? (
+      {!address ? (
         <ConnectButton onClick={() => walletConnect()}>Connect Wallet</ConnectButton>
       ) : (
-        <Tag h="46px" bg={theme.colors.primary} color="white" px="10px" borderRadius="15px">{`${currentAccount.slice(
+        <Tag h="46px" bg={theme.colors.primary} color="white" px="10px" borderRadius="15px">{`${address.slice(
           0,
           5,
-        )}...${currentAccount.slice(-4)}`}</Tag>
+        )}...${address.slice(-4)}`}</Tag>
       )}
     </Flex>
   )

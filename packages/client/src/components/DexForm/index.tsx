@@ -1,9 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import { ArrowDownIcon, SettingsIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Grid, Input, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import theme from 'theme'
 import TokenButton from 'components/common/TokenButton'
+import { TransactionContext } from 'context/TransactionContext'
 
 const InputWrapper = styled(Grid)`
   background-color: ${theme.colors.tabScheme[100]};
@@ -38,6 +39,17 @@ const ReverseButton = styled.div`
 `
 
 const DexForm: FC = () => {
+  const { formData, sendTransaction, handleChange } = useContext(TransactionContext)
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const { amount, addressTo } = formData
+    e.preventDefault()
+
+    if (!addressTo || !amount) return alert('Please fill in all fields')
+
+    sendTransaction()
+  }
+
   return (
     <Flex>
       <Box w="480px" h="280px" bg={theme.colors.primary} borderRadius="30px" paddingInline="20px" position="relative">
@@ -46,7 +58,7 @@ const DexForm: FC = () => {
           <SettingsIcon fontSize="30px" />
         </Grid>
         <InputWrapper>
-          <CustomInput type="number" placeholder="0.0" />
+          <CustomInput type="number" placeholder="0.0" onChange={e => handleChange(e, 'amount')} />
           <TokenButton url="/images/eth.png" token="ETH" />
           <div style={{ paddingBottom: 16 }} />
         </InputWrapper>
@@ -54,10 +66,17 @@ const DexForm: FC = () => {
           <ArrowDownIcon />
         </ReverseButton>
         <InputWrapper marginTop="5px">
-          <CustomInput type="number" placeholder="0.0" />
-          <TokenButton url="/images/Tether-USDT-icon.png" token="USDT" />
+          <CustomInput placeholder="0x..." onChange={e => handleChange(e, 'addressTo')} />
+          {/*  <TokenButton url="/images/Tether-USDT-icon.png" token="USDT" /> */}
         </InputWrapper>
-        <Button w="100%" h="53px" bg={theme.colors.tabScheme[100]} borderRadius="30px" mt="5px">
+        <Button
+          w="100%"
+          h="53px"
+          bg={theme.colors.tabScheme[100]}
+          borderRadius="30px"
+          mt="5px"
+          onClick={e => handleSubmit(e)}
+        >
           Confirm
         </Button>
       </Box>
